@@ -1,7 +1,5 @@
-﻿using System;
-using Prism.Modularity;
+﻿using Prism.Modularity;
 using Prism.Regions;
-using AssemblyCreep.ViewModels;
 using AssemblyCreep.Views;
 
 namespace AssemblyCreep.ProjectMerge
