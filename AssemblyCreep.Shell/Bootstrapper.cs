@@ -1,6 +1,5 @@
 ﻿using Prism.Unity;
 using Prism.Modularity;
-using AssemblyCreep.ProjectMerge;
 
 namespace AssemblyCreep
 {

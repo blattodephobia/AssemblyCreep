@@ -7,9 +7,9 @@
         xmlns:prism="http://prismlibrary.com/"
         mc:Ignorable="d"
         Title="Assembly Creep"
-        Height="350"
-        Width="525"
-        Icon="creep.ico">
-    <ContentControl prism:RegionManager.RegionName="{x:Static ac:Regions.MainRegion}">
-    </ContentControl>
+        Height="650"
+        Width="850"
+        Icon="creep.ico"
+        AllowDrop="True">
+    <ContentControl prism:RegionManager.RegionName="{x:Static ac:Regions.MainRegion}" />
 </Window>

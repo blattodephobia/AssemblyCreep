@@ -62,6 +62,9 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Prism.Wpf.6.2.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
       <Private>True</Private>
@@ -72,10 +75,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Behaviors\DragDropBehavior.cs" />
     <Compile Include="Models\SelectedDependentItemModel.cs" />
     <Compile Include="Models\SelectedItemModel.cs" />
     <Compile Include="ProjectMergeModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PropertyName.cs" />
     <Compile Include="ViewModels\FilesForMergeViewModel.cs" />
     <Compile Include="ViewModels\MergerViewModel.cs" />
     <Compile Include="ViewModels\ReferencesForMergeViewModel.cs" />
@@ -83,6 +88,9 @@
     <Compile Include="ViewModels\TargetProjectViewModel.cs" />
     <Compile Include="Views\MergerView.xaml.cs">
       <DependentUpon>MergerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TargetProjectView.xaml.cs">
+      <DependentUpon>TargetProjectView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -96,6 +104,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\MergerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TargetProjectView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

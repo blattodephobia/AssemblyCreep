@@ -2,7 +2,7 @@
 using Prism.Regions;
 using AssemblyCreep.Views;
 
-namespace AssemblyCreep.ProjectMerge
+namespace AssemblyCreep
 {
     [Module(ModuleName = nameof(ProjectMergeModule), OnDemand = true)]
     public class ProjectMergeModule : IModule
