@@ -18,7 +18,7 @@ namespace AssemblyCreep.ViewModels
                 return discoveredFiles;
             }
 
-            set
+            private set
             {
                 SetProperty(ref discoveredFiles, value);
             }

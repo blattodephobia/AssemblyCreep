@@ -107,15 +107,6 @@ namespace AssemblyCreep.ViewModels
             }
         }
 
-        /// <summary>
-        /// Merges the file and dependency references from <see cref="References"/> and <see cref="FileReferences"/> into a copy of <see cref="ProjectFile"/>
-        /// </summary>
-        /// <returns>A copy of <see cref="ProjectFile"/> with the </returns>
-        public XmlDocument Merge()
-        {
-            return ProjectFile.Clone() as XmlDocument;
-        }
-
         public TargetProjectViewModel()
         {
             BrowseFileCommand = new DelegateCommand(() => BrowseFile());

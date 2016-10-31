@@ -76,8 +76,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Behaviors\DragDropBehavior.cs" />
+    <Compile Include="Models\AssemblyReferenceMerge.cs" />
+    <Compile Include="Models\FileReferenceMerge.cs" />
     <Compile Include="Models\SelectedDependentItemModel.cs" />
     <Compile Include="Models\SelectedItemModel.cs" />
+    <Compile Include="Models\XmlMergeContext.cs" />
+    <Compile Include="Models\XmlNodeMergeBase.cs" />
     <Compile Include="ProjectMergeModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PropertyName.cs" />
