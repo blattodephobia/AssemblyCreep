@@ -1,6 +1,8 @@
-﻿using Microsoft.Win32;
+﻿using AssemblyCreep.Models;
+using Microsoft.Win32;
 using Prism.Commands;
 using Prism.Mvvm;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -19,7 +21,7 @@ namespace AssemblyCreep.ViewModels
                 return projectFile;
             }
 
-            private set
+            set
             {
                 SetProperty(ref projectFile, value);
             }
@@ -30,6 +32,34 @@ namespace AssemblyCreep.ViewModels
         public ICommand DropFileCommand { get; private set; }
 
         public ICommand BrowseFileCommand { get; private set; }
+
+        private ObservableCollection<SelectedDependentItemModel<XmlElement, XmlDocument>> _references;
+        public ObservableCollection<SelectedDependentItemModel<XmlElement, XmlDocument>> References
+        {
+            get
+            {
+                return _references;
+            }
+
+            private set
+            {
+                SetProperty(ref _references, value);
+            }
+        }
+
+        private ObservableCollection<SelectedDependentItemModel<XmlElement, XmlDocument>> _fileReferences;
+        public ObservableCollection<SelectedDependentItemModel<XmlElement, XmlDocument>> FileReferences
+        {
+            get
+            {
+                return _fileReferences;
+            }
+
+            private set
+            {
+                SetProperty(ref _fileReferences, value);
+            }
+        }
 
         private string projectFilePath;
         public string ProjectFilePath
@@ -75,6 +105,15 @@ namespace AssemblyCreep.ViewModels
                     MessageBox.Show("Invalid .csproj file", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
+        }
+
+        /// <summary>
+        /// Merges the file and dependency references from <see cref="References"/> and <see cref="FileReferences"/> into a copy of <see cref="ProjectFile"/>
+        /// </summary>
+        /// <returns>A copy of <see cref="ProjectFile"/> with the </returns>
+        public XmlDocument Merge()
+        {
+            return ProjectFile.Clone() as XmlDocument;
         }
 
         public TargetProjectViewModel()
