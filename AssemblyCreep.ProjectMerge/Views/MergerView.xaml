@@ -10,6 +10,10 @@
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="300">
+    <UserControl.DataContext>
+        <vm:MergerViewModel />
+    </UserControl.DataContext>
+    
     <Grid HorizontalAlignment="Stretch"
           VerticalAlignment="Stretch">
         <Grid.ColumnDefinitions>
@@ -25,26 +29,11 @@
             </Grid.RowDefinitions>
             <TextBlock Text="Source projects" />
             <views:SourceProjectsView Grid.Row="1"
-                                      Background="Transparent">
-                <views:SourceProjectsView.DataContext>
-                    <vm:SourceProjectsViewModel />
-                </views:SourceProjectsView.DataContext>
-            </views:SourceProjectsView>
+                                      Background="Transparent" />
         </Grid>
 
         <UniformGrid Grid.Column="1"
                      Columns="1">
-            <HeaderedContentControl Header="Source references">
-                <HeaderedContentControl.Content>
-                    <vm:ReferencesForMergeViewModel />
-                </HeaderedContentControl.Content>
-            </HeaderedContentControl>
-
-            <HeaderedContentControl Header="Source files">
-                <HeaderedContentControl.Content>
-                    <vm:FilesForMergeViewModel />
-                </HeaderedContentControl.Content>
-            </HeaderedContentControl>
         </UniformGrid>
 
         <Grid Grid.Column="2">
@@ -56,11 +45,7 @@
             <TextBlock Text="Target project" />
 
             <views:TargetProjectView Grid.Row="1"
-                                     Background="Blue">
-                <views:TargetProjectView.DataContext>
-                    <vm:TargetProjectViewModel />
-                </views:TargetProjectView.DataContext>
-            </views:TargetProjectView>
+                                     Background="Blue" />
         </Grid>
     </Grid>
 </UserControl>

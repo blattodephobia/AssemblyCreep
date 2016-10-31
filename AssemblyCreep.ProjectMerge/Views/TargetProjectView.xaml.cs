@@ -21,11 +21,11 @@ namespace AssemblyCreep.Views
     /// </summary>
     public partial class TargetProjectView : UserControl
     {
-        public TargetProjectViewModel ViewModel
+        public MergerViewModel ViewModel
         {
             get
             {
-                return DataContext as TargetProjectViewModel;
+                return DataContext as MergerViewModel;
             }
 
             set

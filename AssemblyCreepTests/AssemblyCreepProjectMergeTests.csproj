@@ -57,8 +57,8 @@
   <ItemGroup>
     <Compile Include="FilesForMergeViewModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SourceProjectViewModelTests.cs" />
-    <Compile Include="TargetProjectViewModelTests.cs" />
+    <Compile Include="MergerViewModel.SourceProjectsTests.cs" />
+    <Compile Include="MergerViewModel.TemplateProjectTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AssemblyCreep.ProjectMerge\AssemblyCreep.ProjectMerge.csproj">

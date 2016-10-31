@@ -2,7 +2,7 @@
 
 namespace AssemblyCreep.ViewModels
 {
-    public class ReferencesForMergeViewModel : BindableBase
+    public partial class MergerViewModel : BindableBase
     {
     }
 }
