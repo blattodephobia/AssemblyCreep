@@ -17,11 +17,11 @@ namespace AssemblyCreepProjectMergeTests
         [TestMethod]
         public void EmitsErrorOnInvalidXml()
         {
-            MergerViewModel vm = new MergerViewModel();
+            SourceProjectsViewModel vm = new SourceProjectsViewModel();
             var ms = new MemoryStream();
             ms.Write(Encoding.ASCII.GetBytes("lololo"), 0, 6);
             ms.Seek(0, SeekOrigin.Begin);
-            SelectedItemViewModel<XmlDocument> sim = vm.GetXmlFileModel(ms);
+            SelectedItemModel<XmlDocument> sim = vm.GetXmlFileModel(ms);
             Assert.IsNull(sim.Item);
             Assert.IsNotNull(sim.Description);
         }
@@ -29,7 +29,7 @@ namespace AssemblyCreepProjectMergeTests
         [TestMethod]
         public void LoadsValidXmlCorrectly()
         {
-            MergerViewModel vm = new MergerViewModel();
+            SourceProjectsViewModel vm = new SourceProjectsViewModel();
             using (MemoryStream ms = new MemoryStream())
             {
                 var xml = XmlWriter.Create(ms);
@@ -45,7 +45,7 @@ namespace AssemblyCreepProjectMergeTests
                 xml.WriteEndElement();
                 xml.Flush();
                 ms.Position = 0;
-                SelectedItemViewModel<XmlDocument> sim = vm.GetXmlFileModel(ms);
+                SelectedItemModel<XmlDocument> sim = vm.GetXmlFileModel(ms);
                 Assert.AreEqual("root", sim.Item.DocumentElement.Name);
             }
         }

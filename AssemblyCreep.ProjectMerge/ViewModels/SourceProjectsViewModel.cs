@@ -12,10 +12,10 @@ using System.Xml;
 
 namespace AssemblyCreep.ViewModels
 {
-    public partial class MergerViewModel : BindableBase
+    public class SourceProjectsViewModel : BindableBase
     {
-        private ObservableCollection<SelectedItemViewModel<XmlDocument>> projectFiles;
-        public ObservableCollection<SelectedItemViewModel<XmlDocument>> ProjectFiles
+        private ObservableCollection<SelectedItemModel<XmlDocument>> projectFiles;
+        public ObservableCollection<SelectedItemModel<XmlDocument>> ProjectFiles
         {
             get
             {
@@ -30,7 +30,7 @@ namespace AssemblyCreep.ViewModels
 
         public ICommand DropFilesCommand { get; private set; }
 
-        public SelectedItemViewModel<XmlDocument> GetXmlFileModel(Stream stream)
+        public SelectedItemModel<XmlDocument> GetXmlFileModel(Stream stream)
         {
             XmlDocument doc = null;
             string error = null;
@@ -45,7 +45,7 @@ namespace AssemblyCreep.ViewModels
                 error = e.Message;
             }
 
-            var result = new SelectedItemViewModel<XmlDocument>(doc) { Description = error };
+            var result = new SelectedItemModel<XmlDocument>(doc) { Description = error };
             return result;
         }
 
@@ -57,16 +57,16 @@ namespace AssemblyCreep.ViewModels
                 if (ProjectFiles.Any(m => (m.Source as FileInfo)?.FullName == file.FullName)) continue;
                 using (Stream fileStream = file.OpenRead())
                 {
-                    SelectedItemViewModel<XmlDocument> model = GetXmlFileModel(fileStream);
+                    SelectedItemModel<XmlDocument> model = GetXmlFileModel(fileStream);
                     model.Source = file;
                     ProjectFiles.Add(model);
                 }
             }
         }
 
-        private void InitSourceFilesSelection()
+        public SourceProjectsViewModel()
         {
-            ProjectFiles = new ObservableCollection<SelectedItemViewModel<XmlDocument>>();
+            ProjectFiles = new ObservableCollection<SelectedItemModel<XmlDocument>>();
             DropFilesCommand = new DelegateCommand<DragEventArgs>(OnFilesDrop);
         }
     }

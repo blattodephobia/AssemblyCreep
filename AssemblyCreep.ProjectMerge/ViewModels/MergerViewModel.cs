@@ -1,19 +1,55 @@
-﻿using AssemblyCreep.Models;
-using Prism.Commands;
-using Prism.Mvvm;
-using System.Collections.ObjectModel;
+﻿using Prism.Mvvm;
 using System.IO;
-using System.Windows;
-using System.Xml;
 
 namespace AssemblyCreep.ViewModels
 {
-    public partial class MergerViewModel : BindableBase
+    public class MergerViewModel : BindableBase
     {
-        public MergerViewModel()
+        public FileInfo GetTargetFileInfo(FileInfo sourceFileInfo) =>
+            new FileInfo(FileMergeViewModel.UseNewFolderStructure
+                ? sourceFileInfo.FullName.Replace('.', '\\')
+                : sourceFileInfo.FullName);
+
+        private FilesForMergeViewModel fileMergeViewModel;
+        public FilesForMergeViewModel FileMergeViewModel
         {
-            InitSourceFilesSelection();
-            InitTemplateSelection();
+            get
+            {
+                return fileMergeViewModel;
+            }
+
+            private set
+            {
+                SetProperty(ref fileMergeViewModel, value);
+            }
+        }
+
+        private ReferencesForMergeViewModel referencesViewModel;
+        public ReferencesForMergeViewModel ReferencesViewModel
+        {
+            get
+            {
+                return referencesViewModel;
+            }
+
+            private set
+            {
+                SetProperty(ref referencesViewModel, value);
+            }
+        }
+
+        private TargetProjectViewModel targetProjectViewModel;
+        public TargetProjectViewModel TargetProjectViewModel
+        {
+            get
+            {
+                return targetProjectViewModel;
+            }
+
+            private set
+            {
+                SetProperty(ref targetProjectViewModel, value);
+            }
         }
     }
 }

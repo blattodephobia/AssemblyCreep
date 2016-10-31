@@ -8,10 +8,10 @@ using System.Xml;
 
 namespace AssemblyCreep.ViewModels
 {
-    public partial class MergerViewModel : BindableBase
+    public class FilesForMergeViewModel : BindableBase
     {
-        private ObservableCollection<SelectedDependentItemViewModel<FileInfo, XmlDocument>> discoveredFiles;
-        public ObservableCollection<SelectedDependentItemViewModel<FileInfo, XmlDocument>> DiscoveredFiles
+        private ObservableCollection<SelectedDependentItemModel<FileInfo, XmlDocument>> discoveredFiles;
+        public ObservableCollection<SelectedDependentItemModel<FileInfo, XmlDocument>> DiscoveredFiles
         {
             get
             {
@@ -38,6 +38,6 @@ namespace AssemblyCreep.ViewModels
             }
         }
 
-        public IEnumerable<SelectedDependentItemViewModel<FileInfo, XmlDocument>> GetSelectedFiles() => DiscoveredFiles.Where(f => f.IsSelected);
+        public IEnumerable<SelectedDependentItemModel<FileInfo, XmlDocument>> GetSelectedFiles() => DiscoveredFiles.Where(f => f.IsSelected);
     }
 }

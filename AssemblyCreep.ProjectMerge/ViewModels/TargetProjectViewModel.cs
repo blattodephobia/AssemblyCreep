@@ -11,7 +11,7 @@ using System.Xml;
 
 namespace AssemblyCreep.ViewModels
 {
-    public partial class MergerViewModel : BindableBase
+    public class TargetProjectViewModel : BindableBase
     {
         private XmlDocument projectFile;
         public XmlDocument ProjectFile
@@ -33,8 +33,8 @@ namespace AssemblyCreep.ViewModels
 
         public ICommand BrowseFileCommand { get; private set; }
 
-        private ObservableCollection<SelectedDependentItemViewModel<XmlElement, XmlDocument>> _references;
-        public ObservableCollection<SelectedDependentItemViewModel<XmlElement, XmlDocument>> References
+        private ObservableCollection<SelectedDependentItemModel<XmlElement, XmlDocument>> _references;
+        public ObservableCollection<SelectedDependentItemModel<XmlElement, XmlDocument>> References
         {
             get
             {
@@ -47,8 +47,8 @@ namespace AssemblyCreep.ViewModels
             }
         }
 
-        private ObservableCollection<SelectedDependentItemViewModel<XmlElement, XmlDocument>> _fileReferences;
-        public ObservableCollection<SelectedDependentItemViewModel<XmlElement, XmlDocument>> FileReferences
+        private ObservableCollection<SelectedDependentItemModel<XmlElement, XmlDocument>> _fileReferences;
+        public ObservableCollection<SelectedDependentItemModel<XmlElement, XmlDocument>> FileReferences
         {
             get
             {
@@ -107,7 +107,7 @@ namespace AssemblyCreep.ViewModels
             }
         }
 
-        public void InitTemplateSelection()
+        public TargetProjectViewModel()
         {
             BrowseFileCommand = new DelegateCommand(() => BrowseFile());
             CsProjFileLoadCommand = new DelegateCommand(() => LoadCsProjFile(ProjectFilePath), () => !string.IsNullOrEmpty(ProjectFilePath) && File.Exists(ProjectFilePath));
