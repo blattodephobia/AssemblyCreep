@@ -1,10 +1,13 @@
-﻿using Prism.Mvvm;
+﻿using Prism.Events;
+using Prism.Mvvm;
 using System.IO;
 
 namespace AssemblyCreep.ViewModels
 {
     public class MergerViewModel : BindableBase
     {
+        private IEventAggregator _mergingEventAggregator;
+
         public FileInfo GetTargetFileInfo(FileInfo sourceFileInfo) =>
             new FileInfo(FileMergeViewModel.UseNewFolderStructure
                 ? sourceFileInfo.FullName.Replace('.', '\\')
@@ -50,6 +53,11 @@ namespace AssemblyCreep.ViewModels
             {
                 SetProperty(ref targetProjectViewModel, value);
             }
+        }
+
+        public MergerViewModel()
+        {
+            _mergingEventAggregator = new EventAggregator();
         }
     }
 }
