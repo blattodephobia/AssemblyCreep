@@ -1,5 +1,6 @@
 ﻿using Prism.Unity;
 using Prism.Modularity;
+using System;
 
 namespace AssemblyCreep
 {
@@ -7,8 +8,8 @@ namespace AssemblyCreep
     {
         protected override void ConfigureModuleCatalog()
         {
-            var moduleCatalog = (ModuleCatalog)ModuleCatalog;
-            moduleCatalog.AddModule(typeof(ProjectMergeModule));
+            Type projMergeType = typeof(ProjectMergeModule);
+            ModuleCatalog.AddModule(new ModuleInfo(projMergeType.Name, projMergeType.AssemblyQualifiedName));
         }
     }
 }

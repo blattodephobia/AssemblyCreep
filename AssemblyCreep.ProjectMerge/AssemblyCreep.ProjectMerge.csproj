@@ -89,6 +89,9 @@
     <Compile Include="Views\MergerView.xaml.cs">
       <DependentUpon>MergerView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SourceProjectsView.xaml.cs">
+      <DependentUpon>SourceProjectsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\TargetProjectView.xaml.cs">
       <DependentUpon>TargetProjectView.xaml</DependentUpon>
     </Compile>
@@ -104,6 +107,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\MergerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SourceProjectsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

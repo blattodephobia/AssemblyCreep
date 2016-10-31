@@ -10,35 +10,29 @@
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="300">
-    <Grid>
+    <Grid HorizontalAlignment="Stretch"
+          VerticalAlignment="Stretch">
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <HeaderedContentControl Header="Target project"
-                                Grid.Column="0"
-                                VerticalAlignment="Stretch">
-            <HeaderedContentControl.Content>
-                <vm:TargetProjectViewModel />
-            </HeaderedContentControl.Content>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <TextBlock Text="Source projects" />
+            <views:SourceProjectsView Grid.Row="1"
+                                      Background="Transparent">
+                <views:SourceProjectsView.DataContext>
+                    <vm:SourceProjectsViewModel />
+                </views:SourceProjectsView.DataContext>
+            </views:SourceProjectsView>
+        </Grid>
 
-            <HeaderedContentControl.ContentTemplate>
-                <DataTemplate>
-                    <views:TargetProjectView Background="Red" />
-                </DataTemplate>
-            </HeaderedContentControl.ContentTemplate>
-        </HeaderedContentControl>
-
-        <HeaderedContentControl Header="Source projects"
-                                Grid.Column="1">
-            <HeaderedContentControl.Content>
-                <vm:SourceProjectsViewModel />
-            </HeaderedContentControl.Content>
-        </HeaderedContentControl>
-
-        <UniformGrid Grid.Column="2"
+        <UniformGrid Grid.Column="1"
                      Columns="1">
             <HeaderedContentControl Header="Source references">
                 <HeaderedContentControl.Content>
@@ -52,5 +46,21 @@
                 </HeaderedContentControl.Content>
             </HeaderedContentControl>
         </UniformGrid>
+
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            
+            <TextBlock Text="Target project" />
+
+            <views:TargetProjectView Grid.Row="1"
+                                     Background="Blue">
+                <views:TargetProjectView.DataContext>
+                    <vm:TargetProjectViewModel />
+                </views:TargetProjectView.DataContext>
+            </views:TargetProjectView>
+        </Grid>
     </Grid>
 </UserControl>

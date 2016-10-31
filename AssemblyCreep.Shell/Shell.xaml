@@ -11,5 +11,7 @@
         Width="850"
         Icon="creep.ico"
         AllowDrop="True">
-    <ContentControl prism:RegionManager.RegionName="{x:Static ac:Regions.MainRegion}" />
+    <ContentControl prism:RegionManager.RegionName="{x:Static ac:Regions.MainRegion}"
+                    VerticalContentAlignment="Stretch"
+                    HorizontalContentAlignment="Stretch" />
 </Window>
