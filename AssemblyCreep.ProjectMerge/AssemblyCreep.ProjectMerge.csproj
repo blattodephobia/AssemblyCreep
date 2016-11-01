@@ -80,6 +80,7 @@
     <Compile Include="Models\FileReferenceMerge.cs" />
     <Compile Include="Models\SelectedDependentItemModel.cs" />
     <Compile Include="Models\SelectedItemModel.cs" />
+    <Compile Include="Models\SelectionChangedEventArgs.cs" />
     <Compile Include="Models\XmlMergeContext.cs" />
     <Compile Include="Models\XmlNodeMergeBase.cs" />
     <Compile Include="ProjectMergeModule.cs" />
@@ -87,6 +88,7 @@
     <Compile Include="PropertyName.cs" />
     <Compile Include="ViewModels\FilesForMergeViewModel.cs" />
     <Compile Include="ViewModels\MergerViewModel.cs" />
+    <Compile Include="ViewModels\ProjectItemLoaderViewModel.cs" />
     <Compile Include="ViewModels\ReferencesForMergeViewModel.cs" />
     <Compile Include="ViewModels\SourceProjectsViewModel.cs" />
     <Compile Include="ViewModels\TargetProjectViewModel.cs" />

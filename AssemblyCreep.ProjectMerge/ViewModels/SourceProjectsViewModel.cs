@@ -12,7 +12,7 @@ using System.Xml;
 
 namespace AssemblyCreep.ViewModels
 {
-    public class SourceProjectsViewModel : BindableBase
+    public class SourceProjectsViewModel : ProjectItemLoaderViewModel
     {
         private ObservableCollection<SelectedItemModel<XmlDocument>> projectFiles;
         public ObservableCollection<SelectedItemModel<XmlDocument>> ProjectFiles
