@@ -21,7 +21,7 @@ namespace AssemblyCreepProjectMergeTests
             var ms = new MemoryStream();
             ms.Write(Encoding.ASCII.GetBytes("lololo"), 0, 6);
             ms.Seek(0, SeekOrigin.Begin);
-            SelectedItemModel<XmlDocument> sim = vm.GetXmlFileModel(ms);
+            SelectedItemViewModel<XmlDocument> sim = vm.GetXmlFileModel(ms);
             Assert.IsNull(sim.Item);
             Assert.IsNotNull(sim.Description);
         }
@@ -45,7 +45,7 @@ namespace AssemblyCreepProjectMergeTests
                 xml.WriteEndElement();
                 xml.Flush();
                 ms.Position = 0;
-                SelectedItemModel<XmlDocument> sim = vm.GetXmlFileModel(ms);
+                SelectedItemViewModel<XmlDocument> sim = vm.GetXmlFileModel(ms);
                 Assert.AreEqual("root", sim.Item.DocumentElement.Name);
             }
         }

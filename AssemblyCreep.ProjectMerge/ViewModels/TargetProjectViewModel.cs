@@ -33,8 +33,8 @@ namespace AssemblyCreep.ViewModels
 
         public ICommand BrowseFileCommand { get; private set; }
 
-        private ObservableCollection<SelectedDependentItemModel<XmlElement, XmlDocument>> _references;
-        public ObservableCollection<SelectedDependentItemModel<XmlElement, XmlDocument>> References
+        private ObservableCollection<SelectedDependentItemViewModel<XmlElement, XmlDocument>> _references;
+        public ObservableCollection<SelectedDependentItemViewModel<XmlElement, XmlDocument>> References
         {
             get
             {
@@ -47,8 +47,8 @@ namespace AssemblyCreep.ViewModels
             }
         }
 
-        private ObservableCollection<SelectedDependentItemModel<XmlElement, XmlDocument>> _fileReferences;
-        public ObservableCollection<SelectedDependentItemModel<XmlElement, XmlDocument>> FileReferences
+        private ObservableCollection<SelectedDependentItemViewModel<XmlElement, XmlDocument>> _fileReferences;
+        public ObservableCollection<SelectedDependentItemViewModel<XmlElement, XmlDocument>> FileReferences
         {
             get
             {
