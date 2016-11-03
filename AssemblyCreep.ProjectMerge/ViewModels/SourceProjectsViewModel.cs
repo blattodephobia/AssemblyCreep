@@ -1,5 +1,6 @@
 ﻿using AssemblyCreep.Models;
 using Prism.Commands;
+using Prism.Events;
 using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,8 @@ namespace AssemblyCreep.ViewModels
 {
     public class SourceProjectsViewModel : ProjectItemLoaderViewModel
     {
+        private IEventAggregator _aggregator;
+
         private ObservableCollection<CsProjFile> projectFiles;
         public ObservableCollection<CsProjFile> ProjectFiles
         {
@@ -55,25 +58,25 @@ namespace AssemblyCreep.ViewModels
                 var projFile = sender as CsProjFile;
                 if (projFile.IsSelected)
                 {
-                    OnItemsSelected(new[] { projFile });
+                    RaiseFileLoadEvent(loadedItems: new[] { projFile }, unloadedItems: null);
                 }
                 else
                 {
-                    OnItemsDeselected(new[] { projFile });
+                    RaiseFileLoadEvent(loadedItems: null, unloadedItems: new[] { projFile });
                 }
             }
         }
 
         private void ProjectFiles_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            if (e.NewItems.Count > 0)
+            if (e.NewItems?.Count > 0)
             {
-                OnItemsSelected(e.NewItems.Cast<CsProjFile>());
+                OnItemsAdded(e.NewItems.Cast<CsProjFile>());
             }
 
-            if (e.OldItems.Count > 0)
+            if (e.OldItems?.Count > 0)
             {
-                OnItemsDeselected(e.OldItems.Cast<CsProjFile>());
+                OnItemsRemoved(e.OldItems.Cast<CsProjFile>());
             }
         }
 
@@ -98,14 +101,27 @@ namespace AssemblyCreep.ViewModels
             return result;
         }
 
-        private void OnItemsSelected(IEnumerable<CsProjFile> items)
+        private void OnItemsAdded(IEnumerable<CsProjFile> items)
         {
-
+            foreach (CsProjFile file in items)
+            {
+                file.PropertyChanged += ProjFile_PropertyChanged;
+            }
+            RaiseFileLoadEvent(items, null);
         }
 
-        private void OnItemsDeselected(IEnumerable<CsProjFile> items)
+        private void OnItemsRemoved(IEnumerable<CsProjFile> items)
         {
+            foreach (CsProjFile file in items)
+            {
+                file.PropertyChanged -= ProjFile_PropertyChanged;
+            }
+            RaiseFileLoadEvent(null, items);
+        }
 
+        private void RaiseFileLoadEvent(IEnumerable<CsProjFile> loadedItems, IEnumerable<CsProjFile> unloadedItems)
+        {
+            _aggregator.GetEvent<FileLoadEvent>().Publish(new FileLoadEventArgs(loadedItems, unloadedItems));
         }
 
         private void OnFilesDrop(DragEventArgs args)
@@ -123,8 +139,9 @@ namespace AssemblyCreep.ViewModels
             }
         }
 
-        public SourceProjectsViewModel()
+        public SourceProjectsViewModel(IEventAggregator aggregator)
         {
+            _aggregator = aggregator;
             ProjectFiles = new ObservableCollection<CsProjFile>();
             DropFilesCommand = new DelegateCommand<DragEventArgs>(OnFilesDrop);
         }
